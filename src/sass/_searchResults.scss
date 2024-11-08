@@ -1,0 +1,65 @@
+.search-results {
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.results {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.pagination {
+  margin-top: auto;
+  padding: 0 3.5rem;
+  position: relative; /* To allow absolute positioning within the container */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center the pagination count horizontally */
+  align-items: center; /* Center the pagination count vertically */
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  &__btn {
+    &--prev {
+      // float: left;
+      position: absolute;
+      left: 0;
+      margin-left: 2em;
+    }
+    &--next {
+      // float: right;
+      position: absolute;
+      right: 0;
+      margin-right: 2em;
+    }
+  }
+  &__count {
+    display: inline-block; /* Ensure it stays inline for centering */
+    position: absolute; /* Position it absolutely to center it within the container */
+    left: 50%; /* Move it to the horizontal center of the container */
+    transform: translateX(-50%); /* Adjust its position to truly center it */
+  }
+}
+
+.copyright {
+  color: $color-grey-dark-2;
+  font-size: 1.2rem;
+  padding: 0 3.5rem;
+  margin-top: 4rem;
+
+  .twitter-link:link,
+  .twitter-link:visited {
+    color: $color-grey-dark-2;
+  }
+}
+
+/* MINE */
+.pagination__count {
+  position: absolute; /* Position it absolutely to center it within the container */
+  left: 50%; /* Move it to the horizontal center of the container */
+  transform: translateX(-50%); /* Adjust its position to truly center it */
+}
