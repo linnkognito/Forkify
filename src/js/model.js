@@ -23,7 +23,6 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
-    // Conditionally add key property to the object:
     ...(recipe.key && { key: recipe.key }),
   };
 };
@@ -57,7 +56,7 @@ export const loadSearchResults = async function (query) {
     });
     state.search.page = 1;
   } catch (err) {
-    console.log(`${err} 💥💥💥`);
+    console.log(`💥${err}`);
     throw err;
   }
 };
@@ -65,11 +64,10 @@ export const loadSearchResults = async function (query) {
 export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
 
-  // Dynamically getting the amount of items on a page
+  // Get amount of items on a page
   const start = (page - 1) * state.search.resultsPerPage; // 0
   const end = page * RES_PER_PAGE;
 
-  // Returning the results array from the state obj
   return state.search.results.slice(start, end);
 };
 
@@ -78,7 +76,6 @@ export const updateServings = function (newServings) {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
   });
 
-  // Updates the state obj
   state.recipe.servings = newServings;
 };
 
@@ -111,10 +108,8 @@ init();
 
 export const uploadRecipe = async function (newRecipe) {
   try {
-    // Extract index
     const getIndex = key => key.split('-')[1];
 
-    // Create ingredient object
     const ingredients = Object.entries(newRecipe)
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(([key, description]) => {
